@@ -16,3 +16,6 @@ jobs:
 
       - name: Check LSM
         run: cat /sys/kernel/security/lsm
+        
+      - name: Check Kernel
+        run: uname -r
