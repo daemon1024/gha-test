@@ -14,8 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Check Boot Config
+        run: cat /boot/config-$(uname -r) | grep LSM
+      
       - name: Check LSM
         run: cat /sys/kernel/security/lsm
-        
-      - name: Check Kernel
-        run: uname -r
