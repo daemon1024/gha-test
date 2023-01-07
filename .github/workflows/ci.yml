@@ -19,3 +19,9 @@ jobs:
       
       - name: Check LSM
         run: cat /sys/kernel/security/lsm
+
+      - name: run bpftool feature check
+        run: sudo bpftool feature probe | grep -n -C 2 lsm
+
+      - name: execute local binary
+        run: sudo ./testlsm
