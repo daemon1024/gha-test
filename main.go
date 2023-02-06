@@ -72,7 +72,7 @@ func main() {
 	}()
 
 	go func() {
-		time.Sleep(5 * time.Second)
+		time.Sleep(20 * time.Second)
 		if err := rd.Close(); err != nil {
 			log.Fatalf("closing ringbuf reader: %s", err)
 		}
@@ -81,7 +81,9 @@ func main() {
 
 	var event eventBPF
 	for {
+		fmt.Printf("Waiting for event\t")
 		record, err := rd.Read()
+		fmt.Printf("Recieved event\t")
 		if err != nil {
 			if errors.Is(err, ringbuf.ErrClosed) {
 				log.Println("Received signal, exiting..")

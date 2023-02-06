@@ -24,4 +24,7 @@ jobs:
         run: sudo bpftool feature probe | grep -n -C 2 lsm
 
       - name: execute local binary
-        run: sudo ./testlsm
+        run: sudo ./testlsm > test.log
+
+      - name: check logs
+        run: cat test.log
