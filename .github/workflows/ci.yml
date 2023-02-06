@@ -24,4 +24,12 @@ jobs:
         run: sudo bpftool feature probe | grep -n -C 2 lsm
 
       - name: execute local binary
-        run: sudo ./testlsm
+        run: sudo ./testlsm &
+
+      - name: capture printk logs
+        run: sudo cat /sys/kernel/debug/tracing/trace_pipe > test.log &     
+
+      - name: test lsm prog
+        run: |
+          sleep 1
+          cat test.log
